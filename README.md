@@ -12,7 +12,7 @@ In this scenario, we'll be investigating potential security issues associated wi
 
 ### Create a Splunk Cloud Account
 
-To use Splunk Cloud, you must [create an account](). After creating your account you'll also need to sign up and get a free Splunk Cloud trial. 
+To use Splunk Cloud, you must [create an account](https://github.com/sindycp/Searching-in-Splunk-/blob/main/Splunk%20Account%20Sign-up.md). After creating your account you'll also need to sign up and get a free Splunk Cloud trial. 
 
 ### Data Upload
 
@@ -25,6 +25,8 @@ To initiate querying in Splunk, the next step involves uploading data. Follow th
 2. Access Splunk Home within your Splunk Cloud free trial instance. If necessary, log in again using the credentials established
 
 3. On the Splunk bar, locate and click on **Settings**. Then, select the **Add Data** icon.
+
+![SplunkSettings](https://i.imgur.com/I5h4Coh.png)
 
 4. Choose the **Upload** option.
 
