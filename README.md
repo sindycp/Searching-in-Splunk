@@ -10,9 +10,9 @@ In this scenario, we'll be investigating potential security issues associated wi
 
 ## Initial Setup
 
-### Create a Splunk Cloud Account
+### Create a Splunk Cloud Account and Activate Trial
 
-To use Splunk Cloud, you must [create an account](https://github.com/sindycp/Searching-in-Splunk-/blob/main/Splunk%20Account%20Sign-up.md). After creating your account you'll also need to sign up and get a free Splunk Cloud trial. 
+To use Splunk Cloud, you must [create an account and sign up to get a free Splunk Cloud trial.](https://github.com/sindycp/Searching-in-Splunk-/blob/main/Splunk%20Account%20Sign-up.md).
 
 ### Data Upload
 
@@ -30,7 +30,7 @@ To initiate querying in Splunk, the next step involves uploading data. Follow th
 
 4. Choose the **Upload** option.
 
-5. Click on the **Select File** button to upload the [sampledata.zip](https://github.com/sindycp/Searching-in-Splunk-/blob/main/sampledata.zip) file and click **Open**.
+5. Click on the **Select File** button to upload the `sampledata.zip` file and click **Open**.
 
 6. Proceed by clicking the **Next** button to advance to **Input Settings**.
 
