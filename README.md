@@ -6,7 +6,7 @@
 
 Mastering the skill of creating effective searches is essential, allowing one to swiftly and accurately reveal desired information within vast datasets. This proficiency proves particularly crucial in incident response scenarios, where the swift identification and resolution of security incidents are imperative. Furthermore, adept search techniques enhance the ability to efficiently discern patterns, trends, and anomalies within data.
 
-In this scenario, we'll be investigating potential security issues associated with the mail server of a fictitious e-commerce store, Buttercup Games. Specifically, the task involves examining any instances of failed SSH logins for the root account.
+In this scenario, we'll be investigating potential security issues associated with the mail server of a fictitious company, Buttercup Games. Specifically, the task involves examining any instances of failed SSH logins for the root account.
 
 ## Objective
 
