@@ -1,5 +1,7 @@
 # Searching in Splunk
 
+![Splunk Lab](https://i.imgur.com/Q0h9q15.png)
+
 ## Overview
 
 Mastering the skill of creating effective searches is essential, allowing one to swiftly and accurately reveal desired information within vast datasets. This proficiency proves particularly crucial in incident response scenarios, where the swift identification and resolution of security incidents are imperative. Furthermore, adept search techniques enhance the ability to efficiently discern patterns, trends, and anomalies within data.
@@ -10,7 +12,7 @@ In this scenario, basic searches utilizing Splunk's querying language, Search Pr
 
 ### Create a Splunk Cloud Account
 
-To use Splunk Cloud, you must create an account. After creating your account you'll also need to sign up got a free Splunk Cloud trial. 
+To use Splunk Cloud, you must [create an account](). After creating your account you'll also need to sign up got a free Splunk Cloud trial. 
 
 ### Data Upload
 
@@ -18,25 +20,25 @@ For optimal functionality, it is crucial for SIEM tools to ingest and index data
 
 To initiate querying in Splunk, the next step involves uploading data. Follow the outlined steps below to accomplish this task:
 
-1. Download sampledata.zip. Do not decompress the file.
+1. Download [sampledata.zip](https://github.com/sindycp/Searching-in-Splunk-/blob/main/sampledata.zip) Do not decompress the file.
 
 2. Access Splunk Home within your Splunk Cloud free trial instance. If necessary, log in again using the credentials established
 
-3. On the Splunk bar, locate and click on Settings. Then, select the Add Data icon.
+3. On the Splunk bar, locate and click on **Settings**. Then, select the **Add Data** icon.
 
-4. Choose the Upload option.
+4. Choose the **Upload** option.
 
-5. Utilize the Select File button to upload the sampledata.zip file and click Open.
+5. Click on the **Select File** button to upload the [sampledata.zip](https://github.com/sindycp/Searching-in-Splunk-/blob/main/sampledata.zip) file and click **Open**.
 
-6. Proceed by clicking the Next button to advance to Input Settings.
+6. Proceed by clicking the **Next** button to advance to **Input Settings**.
 
-7. Within the Host section, opt for Segment in path and input 1 as the segment number.
+7. Within the **Host** section, opt for **Segment in path** and input **1** as the segment number.
 
-9. Click on the Review button to assess the details of the upload before submission. 
+9. Click on the **Review** button to assess the details of the upload before submission. 
 
 ![Review Details]()
 
-10. Select the Submit option. Upon completion of the data ingestion process by Splunk, you will receive a confirmation indicating the successful upload of the file.
+10. Select the **Submit** option. Upon completion of the data ingestion process by Splunk, you will receive a confirmation indicating the successful upload of the file.
 
 ## Performing a Basic Search
 
@@ -44,19 +46,97 @@ Pause briefly to familiarize yourself with the Splunk Cloud interface. Identify 
 
 INSERT IMAGE
 
-
 Now that the data has been successfully uploaded into Splunk, proceed to execute your inaugural query to verify the ingestion, indexing, and searchability of the data. Follow these steps:
 
-Go to Splunk Home. (To navigate back to Splunk Home, click on the Splunk Cloud logo found on the Splunk Cloud page.)
+1. Go to Splunk **Home**. (To navigate back to Splunk Home, click on the Splunk Cloud logo found on the Splunk Cloud page.)
 
-Click on Search & Reporting. Close any pop-ups that may appear.
+2. Click on **Search & Reporting**. Close any pop-ups that may appear.
 
-In the search bar, input your query as follows:
-
-`index=main`
-
+3. In the search bar, input your query as follows:
+```SPL
+index=main
+```
 This query term specifies the index, which serves as a data repository. In this context, the index represents a singular dataset containing events from an index named main.
 
-Choose "All Time" from the time range dropdown to search for all events across the entire timeline.
+4. Choose **All Time** from the time range dropdown to search for all events across the entire timeline.
 
-Click the search button, identifiable by the magnifying glass icon. Your search should retrieve thousands of events.
+5. Click the **Search** button, identifiable by the magnifying glass icon. Your search should retrieve thousands of events.
+
+INSERT IMAGE
+
+Advice: Employing brief time ranges in your searches is considered a best practice. This approach yields faster results and consumes fewer resources, enhancing overall efficiency.
+
+## Assess the Fields
+
+As Splunk indexes data, it associates fields with each event, incorporating them into the searchable index event data. This facilitates security analysts in efficiently searching for and pinpointing specific data. Following your initial query, scrutinize the search results and the associated fields.
+
+For each event, the notable fields include `host`, `source`, and `sourcetype`. In the **SELECTED FIELDS** section, review these same fields.
+
+INSERT IMAGE
+
+Review the field values by selecting the field under **SELECTED FIELDS**. Take note of the following:
+
+- **host**: The host field designates the name of the network host where the event originated. In this search, there are five hosts:
+
+  - `mailsv`: Buttercup Games' mail server. Examine events generated from this host.
+  - `www1`: One of Buttercup Games' web applications.
+  - `www2`: One of Buttercup Games' web applications.
+  - `www3`: One of Buttercup Games' web applications.
+  - `vendor_sales`: Information about Buttercup Games' retail sales.
+
+INSERT IMAGE
+
+- **source**: The source field specifies the file name from which the event originates. Identify eight sources, particularly note `/mailsv/secure.log`, a log file containing information related to authentication and authorization attempts on the mail server.
+
+INSERT IMAGE
+
+- **sourcetype**: The sourcetype determines how data is formatted. Observe three sourcetypes, and specifically examine secure-2.
+
+INSERT IMAGE
+
+## Refine the Search
+
+To investigate failed SSH logins for the root account on the mail server, you must focus the search on events specifically from the mail server.
+
+In the **SELECTED FIELDS** section, select **host and choose **mailsv**.
+
+Observe the addition of a new term in the search bar: 
+
+```SPL
+index=main host=mailsv
+```
+
+The search results now have narrowed down to over 9000 events generated by the mail server.
+
+INSERT IMAGE
+
+## Find a Failed Login by the Root User
+
+Having restricted the search results to events generated by the mail server, proceed to further refine the search to identify any failed SSH logins for the root account.
+
+1. Clear the search bar.
+
+2. Enter the following into the search bar:
+   
+```SPL
+index=main host=mailsv fail* root
+```
+This query builds upon the previous task's search, incorporating the keyword `fail*` with a wildcard to encompass terms like failure, failed, etc. Lastly, the term `root` is used to identify any events containing the term root.
+
+3. Click on the **search** button.
+
+INSERT IMAGE
+
+## Analyze the Outcomes of the Search
+
+The preceding search is expected to have produced over 300 events. Explore additional pages in the search results to view events beyond those listed on the initial page.
+
+## Key Points
+
+In this exercise, Splunk Cloud was utilized for search and investigation, allowing you to:
+
+- Upload sample log data
+- Search through indexed data
+- Assess search results
+- Recognize various data sources
+- Pinpoint failed SSH login(s) for the root account
