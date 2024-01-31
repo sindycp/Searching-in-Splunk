@@ -1,18 +1,18 @@
 # Searching in Splunk
 
-![Splunk Lab](https://i.imgur.com/Q0h9q15.png)
+![Splunk Lab](https://i.imgur.com/WOQooiE.png)
 
 ## Overview
 
 Mastering the skill of creating effective searches is essential, allowing one to swiftly and accurately reveal desired information within vast datasets. This proficiency proves particularly crucial in incident response scenarios, where the swift identification and resolution of security incidents are imperative. Furthermore, adept search techniques enhance the ability to efficiently discern patterns, trends, and anomalies within data.
 
-In this scenario, basic searches utilizing Splunk's querying language, Search Processing Language (SPL), will be explored. Splunk is a significant SIEM tool due to its role in providing a platform for storing, analyzing, and reporting on data sourced from diverse channels.
+In this scenario, we'll be investigating potential security issues associated with the mail server of a fictitious e-commerce store, Buttercup Games. Specifically, the task involves examining any instances of failed SSH logins for the root account.
 
 ## Initial Setup
 
 ### Create a Splunk Cloud Account
 
-To use Splunk Cloud, you must [create an account](). After creating your account you'll also need to sign up got a free Splunk Cloud trial. 
+To use Splunk Cloud, you must [create an account](). After creating your account you'll also need to sign up and get a free Splunk Cloud trial. 
 
 ### Data Upload
 
@@ -20,7 +20,7 @@ For optimal functionality, it is crucial for SIEM tools to ingest and index data
 
 To initiate querying in Splunk, the next step involves uploading data. Follow the outlined steps below to accomplish this task:
 
-1. Download [sampledata.zip](https://github.com/sindycp/Searching-in-Splunk-/blob/main/sampledata.zip) Do not decompress the file.
+1. Download [sampledata.zip](https://github.com/sindycp/Searching-in-Splunk-/blob/main/sampledata.zip). Do not decompress the file.
 
 2. Access Splunk Home within your Splunk Cloud free trial instance. If necessary, log in again using the credentials established
 
@@ -36,15 +36,15 @@ To initiate querying in Splunk, the next step involves uploading data. Follow th
 
 9. Click on the **Review** button to assess the details of the upload before submission. 
 
-![Review Details]()
+![Review Details](https://i.imgur.com/FQA7yoc.png)
 
 10. Select the **Submit** option. Upon completion of the data ingestion process by Splunk, you will receive a confirmation indicating the successful upload of the file.
 
 ## Performing a Basic Search
 
-Pause briefly to familiarize yourself with the Splunk Cloud interface. Identify key elements such as the app panel, the Explore Splunk panel, and the Splunk bar.
+Pause briefly to familiarize yourself with the Splunk Cloud interface. Identify key elements such as the app panel, the quick links panel, and the Splunk bar.
 
-INSERT IMAGE
+![SplunkExplore](https://i.imgur.com/erTKRiA.png)
 
 Now that the data has been successfully uploaded into Splunk, proceed to execute your inaugural query to verify the ingestion, indexing, and searchability of the data. Follow these steps:
 
@@ -62,9 +62,9 @@ This query term specifies the index, which serves as a data repository. In this 
 
 5. Click the **Search** button, identifiable by the magnifying glass icon. Your search should retrieve thousands of events.
 
-INSERT IMAGE
+![SplunkAllTime](https://i.imgur.com/4y7izUd.png)
 
-Advice: Employing brief time ranges in your searches is considered a best practice. This approach yields faster results and consumes fewer resources, enhancing overall efficiency.
+**Tip**: Employing brief time ranges in your searches is considered a best practice. This approach yields faster results and consumes fewer resources, enhancing overall efficiency.
 
 ## Assess the Fields
 
@@ -72,7 +72,7 @@ As Splunk indexes data, it associates fields with each event, incorporating them
 
 For each event, the notable fields include `host`, `source`, and `sourcetype`. In the **SELECTED FIELDS** section, review these same fields.
 
-INSERT IMAGE
+![SplunkFields](https://i.imgur.com/fyPmvyV.png)
 
 Review the field values by selecting the field under **SELECTED FIELDS**. Take note of the following:
 
@@ -84,15 +84,14 @@ Review the field values by selecting the field under **SELECTED FIELDS**. Take n
   - `www3`: One of Buttercup Games' web applications.
   - `vendor_sales`: Information about Buttercup Games' retail sales.
 
-INSERT IMAGE
-
+![SplunkHost](https://i.imgur.com/ebozYaZ.png)
 - **source**: The source field specifies the file name from which the event originates. Identify eight sources, particularly note `/mailsv/secure.log`, a log file containing information related to authentication and authorization attempts on the mail server.
 
-INSERT IMAGE
+![SplunkSource](https://i.imgur.com/ymMbqwv.png)
 
 - **sourcetype**: The sourcetype determines how data is formatted. Observe three sourcetypes, and specifically examine secure-2.
 
-INSERT IMAGE
+![SplunkSourceType](https://i.imgur.com/sC6pP3T.png)
 
 ## Refine the Search
 
@@ -108,7 +107,7 @@ index=main host=mailsv
 
 The search results now have narrowed down to over 9000 events generated by the mail server.
 
-INSERT IMAGE
+![SplunkMailSV](https://i.imgur.com/HOFW6Z0.png)
 
 ## Find a Failed Login by the Root User
 
@@ -125,7 +124,7 @@ This query builds upon the previous task's search, incorporating the keyword `fa
 
 3. Click on the **search** button.
 
-INSERT IMAGE
+![SplunkFailed](https://i.imgur.com/cKK0b7V.png)
 
 ## Analyze the Outcomes of the Search
 
@@ -136,7 +135,10 @@ The preceding search is expected to have produced over 300 events. Explore addit
 In this exercise, Splunk Cloud was utilized for search and investigation, allowing you to:
 
 - Upload sample log data
-- Search through indexed data
+- Search through indexed data using SPL
 - Assess search results
 - Recognize various data sources
 - Pinpoint failed SSH login(s) for the root account
+
+## Final Thoughts
+In conclusion, we have delved into the exploration of basic searches using Splunk's querying language, known as Search Processing Language (SPL). This endeavor has highlighted the versatility of SPL in efficiently querying and analyzing data within Splunk. Splunk, as a notable SIEM tool, holds significance by serving as a robust platform for the storage, analysis, and reporting of data originating from various sources. Its comprehensive capabilities make it an integral component for security analysts, enabling them to navigate and extract valuable insights from diverse datasets, ultimately contributing to effective cybersecurity measures and incident response.
