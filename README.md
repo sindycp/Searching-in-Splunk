@@ -8,6 +8,16 @@ Mastering the skill of creating effective searches is essential, allowing one to
 
 In this scenario, we'll be investigating potential security issues associated with the mail server of a fictitious e-commerce store, Buttercup Games. Specifically, the task involves examining any instances of failed SSH logins for the root account.
 
+## Objective
+
+In this exercise, Splunk Cloud will be utilized for search and investigation, allowing us to:
+
+- Upload sample log data
+- Search through indexed data using Search Processing Language (SPL)
+- Assess search results
+- Recognize various data sources
+- Pinpoint failed SSH login(s) for the root account
+
 ## Initial Setup
 
 ### Create a Splunk Cloud Account and Activate Trial
@@ -131,16 +141,6 @@ This query builds upon the previous task's search, incorporating the keyword `fa
 ## Analyze the Outcomes of the Search
 
 The preceding search is expected to have produced over 300 events. Explore additional pages in the search results to view events beyond those listed on the initial page.
-
-## Key Points
-
-In this exercise, Splunk Cloud was utilized for search and investigation, allowing you to:
-
-- Upload sample log data
-- Search through indexed data using SPL
-- Assess search results
-- Recognize various data sources
-- Pinpoint failed SSH login(s) for the root account
 
 ## Final Thoughts
 In conclusion, we have delved into the exploration of basic searches using Splunk's querying language, known as Search Processing Language (SPL). This endeavor has highlighted the versatility of SPL in efficiently querying and analyzing data within Splunk. Splunk, as a notable SIEM tool, holds significance by serving as a robust platform for the storage, analysis, and reporting of data originating from various sources. Its comprehensive capabilities make it an integral component for security analysts, enabling them to navigate and extract valuable insights from diverse datasets, ultimately contributing to effective cybersecurity measures and incident response.
